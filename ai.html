@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools | Lumina AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</head>
+<body class="ai-page-body">
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo-link">← Back</a>
+                <h2>Lumina AI</h2>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <button class="nav-btn active" data-target="chat-section">
+                    <span class="icon">💬</span> Lumina Chat
+                </button>
+                <button class="nav-btn" data-target="image-section">
+                    <span class="icon">🎨</span> AI Image Generation
+                </button>
+                <button class="nav-btn" data-target="qr-section">
+                    <span class="icon">📱</span> QR Studio
+                </button>
+                
+                <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 20px 0;">
+                
+                <button class="nav-btn" id="installAppBtn" style="display: none; color: #00d2d3;">
+                    <span class="icon">⬇️</span> Install App
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            
+            <!-- Chat Section -->
+            <section id="chat-section" class="tool-section active">
+                <div class="split-layout">
+                    <!-- Box 1: Prompt Input -->
+                    <div class="box-container prompt-container">
+                        <h3>Ask Lumina</h3>
+                        <div class="prompt-input-area">
+                            <textarea id="aiInput" placeholder="Type your prompt here..."></textarea>
+                            <button id="aiSendBtn">
+                                Generate Answer <span class="btn-icon">✨</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Box 2: AI Answer -->
+                    <div class="box-container answer-container">
+                        <h3>Lumina Answer</h3>
+                        <div class="answer-display" id="answerDisplay">
+                            <div class="placeholder-text">
+                                <p>Your answer will appear here...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Image Section (AI Image Generation) -->
+            <section id="image-section" class="tool-section">
+                <div class="tool-container">
+                    <h2>AI Image Generation 🎨</h2>
+                    <p>Turn text into images instantly.</p>
+                    <div class="split-layout">
+                        <div class="box-container">
+                            <h3>Describe Image</h3>
+                            <div class="prompt-input-area">
+                                <textarea id="imageInput" placeholder="A futuristic city with flying cars..."></textarea>
+                                <button id="generateImageBtn">Generate Image <span class="btn-icon">🎨</span></button>
+                            </div>
+                        </div>
+                        <div class="box-container result-container">
+                            <h3>Result</h3>
+                            <div class="image-result" id="imageResult">
+                                <div class="placeholder-text">Image will appear here</div>
+                            </div>
+                            <a id="downloadImageBtn" href="#" download="ai-image.png" class="aesthetic-btn" style="display: none;">
+                                <span class="icon">⬇️</span> Download Image
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- QR Studio Section -->
+            <section id="qr-section" class="tool-section">
+                <div class="qr-container">
+                    <h2>QR Code Studio</h2>
+                    <p>Turn any link into a QR code instantly.</p>
+                    
+                    <div class="qr-input-group">
+                        <input type="text" id="qrText" placeholder="Paste your link here (e.g. https://google.com)">
+                        <button id="generateQrBtn">Generate QR</button>
+                    </div>
+
+                    <div class="qr-result-wrapper" style="background: white; padding: 20px; border-radius: 20px; display: inline-block;">
+                        <div class="qr-result" id="qrResult">
+                            <div class="placeholder-qr">
+                                <span>Your QR Code will appear here</span>
+                            </div>
+                            <img id="qrImage" src="" alt="QR Code" style="display: none;">
+                        </div>
+                    </div>
+                    <br><br>
+                    <a id="downloadQrBtn" href="#" download="qrcode.png" class="aesthetic-btn" style="display: none;">
+                        <span class="icon">⬇️</span> Download QR
+                    </a>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="ai-script.js"></script>
+</body>
+</html>
